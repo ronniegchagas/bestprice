@@ -18,6 +18,8 @@ defmodule BestpriceWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/budgets", BudgetController, :index
+    get "/budgets/:id", BudgetController, :show
   end
 
   # Other scopes may use custom stacks.
