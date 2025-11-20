@@ -1,4 +1,4 @@
-defmodule Bestprice.Budget do
+defmodule Bestprice.Budgets.Budget do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -17,6 +17,17 @@ defmodule Bestprice.Budget do
     budget
     |> cast(attrs, [:name, :description, :slug])
     |> validate_required([:name, :description, :slug])
+    |> generate_slug()
+    |> validate_format(:slug, ~r/^[a-z0-9-]+$/)
     |> unique_constraint(:slug)
+  end
+
+  defp generate_slug(changeset) do
+    slug =
+      changeset.changes.name
+      |> String.downcase()
+      |> String.replace(" ", "-")
+
+    put_change(changeset, :slug, slug)
   end
 end

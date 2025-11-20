@@ -1,5 +1,12 @@
 <Layouts.flash_group flash={@flash} />
 <div class="container mx-auto px-4 py-6">
-  <h1 class="text-2xl font-bold mb-4">Budget {@id}</h1>
-  <p>This is the budget show page.</p>
+  <h1 class="text-2xl font-bold mb-4">Budget {@budget.id}</h1>
+  <div class="mt-4 space-y-2">
+    <p>
+      Budget Name: {@budget.name}
+    </p>
+    <p>Description: {@budget.description}</p>
+    <p>Created At: {@budget.inserted_at}</p>
+  </div>
+  <.back navigate={~p"/budgets"}>Back to budget listing</.back>
 </div>

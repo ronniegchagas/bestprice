@@ -19,7 +19,9 @@ defmodule BestpriceWeb.Router do
 
     get "/", PageController, :home
     get "/budgets", BudgetController, :index
-    get "/budgets/:id", BudgetController, :show
+    get "/budgets/:slug", BudgetController, :show
+    post "/budgets", BudgetController, :create
+    delete "/budgets/:id", BudgetController, :delete
   end
 
   # Other scopes may use custom stacks.

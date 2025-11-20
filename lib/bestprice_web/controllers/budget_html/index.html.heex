@@ -1,5 +1,28 @@
 <Layouts.flash_group flash={@flash} />
-<div class="container mx-auto px-4 py-6">
+<div class="container mx-auto px-4 py-6 space-y-4">
   <h1 class="text-2xl font-bold mb-4">Budgets</h1>
-  <p>This is the budgets index page.</p>
+  <form action={~p"/budgets"} method="post" class="mb-4">
+    <input type="hidden" name="_csrf_token" value={@csrf_token} />
+    <input
+      type="text"
+      name="name"
+      placeholder="Budget Name"
+      class="border border-gray-300 rounded px-2 py-1 mr-2"
+      required
+    />
+    <input
+      type="text"
+      name="description"
+      placeholder="Description"
+      class="border border-gray-300 rounded px-2 py-1 mr-2"
+    />
+    <button
+      type="submit"
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+    >
+      Create New Budget
+    </button>
+  </form>
+  <p :if={Enum.empty?(@budgets)} class="text-gray-500">There are no budgets registered yet.</p>
+  <.budget :for={budget <- @budgets} budget={budget} />
 </div>
